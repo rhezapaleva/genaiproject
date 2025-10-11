@@ -1,2 +1,0 @@
-# GenAILLM_Individiaul
-
