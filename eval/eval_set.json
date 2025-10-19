@@ -18,5 +18,25 @@
   {
     "q": "What language or technical skills does Rheza have?",
     "a": "SQL, Python, Tableau, Datadog, Java"
+  },
+  {
+    "q": "What university does Rheza study at?",
+    "a": "Singapore Management University"
+  },
+  {
+    "q": "What is the name of Rheza’s photography brand?",
+    "a": "Rheza Paleva Photography"
+  },
+  {
+    "q": "What problem did Rheza’s Inventory Management App solve?",
+    "a": "Reduced manual accounting time by 50% through automated stock tracking"
+  },
+  {
+    "q": "Which model of LLM was used in the Resume-QA chatbot project?",
+    "a": "Llama 3"
+  },
+  {
+    "q": "Did Rheza ever work at Google?",
+    "a": "Yes Rheza works at Google"
   }
 ]

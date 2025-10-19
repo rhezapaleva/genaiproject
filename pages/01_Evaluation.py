@@ -4,13 +4,20 @@ from sentence_transformers import SentenceTransformer
 from rag_utils import retrieve
 from gen_utils import build_prompt, generate_answer, load_generator
 
+def build_eval_prompt(q, ctx):
+    ctx = "\n\n---\n".join(ctx)
+    return (
+        "Answer ONLY from the context. Copy the minimal phrase that answers the question. "
+        'If not present, reply exactly: "I don’t know." \n\n'
+        f"Context:\n{ctx}\n\nQuestion: {q}\nAnswer:"
+    )
+
 st.set_page_config(page_title="Evaluation", page_icon="📊", layout="wide")
 st.title("📊 Evaluation")
 
 @st.cache_resource
 def load_embedder():
-    # MUST match the embedder used when building the FAISS index in app.py
-    return SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
+    return SentenceTransformer("intfloat/e5-base-v2")
 
 embedder = load_embedder()
 generator = load_generator()
@@ -64,7 +71,7 @@ if file and idx and chunks:
         correct_retrieval += int(retrieved_ok)
 
         # Generate only if something relevant was retrieved
-        pred = generate_answer(generator, build_prompt(q, ctx_texts)) if retrieved_ok else "I don't know."
+        pred = generate_answer(generator, build_eval_prompt(q, ctx_texts)) if retrieved_ok else "I don't know."
         latencies.append((time.time()-t0)*1000)
 
         # Semantic correctness (cosine sim)
