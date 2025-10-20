@@ -1,4 +1,4 @@
-# 💬 Resume-QA Chatbot (RAG)
+# Resume-QA Chatbot (RAG)
 
 An interactive Retrieval-Augmented Generation (RAG) system built for my **GenAI Individual Assignment**.  
 This Streamlit app allows users to upload a resume (PDF/TXT), automatically chunk and embed it,  
@@ -7,7 +7,7 @@ It also includes an **evaluation page** to measure retrieval and generation qual
 
 ---
 
-## 🧠 Features
+## Features
 
 - **PDF ingestion with Docling/PyPDF** → text extraction and cleaning  
 - **Semantic chunking** → resume split into overlapping sections  
@@ -18,23 +18,8 @@ It also includes an **evaluation page** to measure retrieval and generation qual
 
 ---
 
-## 🏗️ Project Structure
-individual/
-├── app.py               # Main Streamlit app (RAG interface)
-├── gen_utils.py         # Generation logic (Ollama + prompt builders)
-├── rag_utils.py         # Retrieval and embedding logic (FAISS, chunking)
-├── pages/
-│   └── 01_Evaluation.py # Evaluation metrics dashboard
-├── data/                # Temporary embeddings & index cache
-├── eval/                # eval_set.json (Q/A pairs for evaluation)
-├── requirements.txt     # Python dependencies
-└── README.md            # Project documentation
+## Installation
 
----
-
-## ⚙️ Installation
-
-### 1️⃣ Clone this repository
 ```bash
 git clone https://github.com/rhezapaleva/genaiproject.git
 cd genaiproject/individual
