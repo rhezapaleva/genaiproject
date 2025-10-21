@@ -1,20 +1,19 @@
 # Resume-QA Chatbot (RAG)
 
-An interactive Retrieval-Augmented Generation (RAG) system built for my **GenAI Individual Assignment**.  
-This Streamlit app allows users to upload a resume (PDF/TXT), automatically chunk and embed it,  
-then query the content through a local **LLM (Ollama / Llama 3)** or a fallback **Flan-T5 model**.  
-It also includes an **evaluation page** to measure retrieval and generation quality.
+Upload a resume (PDF/TXT), the app parses and indexes it, then answers questions grounded in the resume using a local LLM (Ollama / Llama 3) with a safe HuggingFace fallback.
 
 ---
 
 ## Features
 
-- **PDF ingestion with Docling/PyPDF** → text extraction and cleaning  
-- **Semantic chunking** → resume split into overlapping sections  
-- **Embedding retrieval** using `sentence-transformers/all-mpnet-base-v2`  
-- **Local generation** via **Ollama (Llama3 / GPT-OSS)** or fallback `flan-t5-small`  
-- **Summary and insight modes** (for generating resume profiles or career trajectories)  
-- **Evaluation dashboard** (Recall@K, semantic similarity accuracy, latency)  
+- PDF ingestion: Docling → pdfplumber → PyPDF (best-effort cascade)
+- Cleaning: removes contact lines / page artifacts; fixes PDF “glued words”
+- Chunking: section-aware, overlapping chunks (size/overlap tunable in UI)
+- Embeddings: intfloat/e5-base-v2 with query/passage prefixes
+- Vector index: FAISS (cosine via L2-normalized inner-product)
+- Generator: Ollama (Llama 3 by default) or HF fallback (Flan-T5 small)
+- Intent-aware prompting: one prompt adapts to yes/no, QA, and summary
+- Evaluation: Recall@K, semantic accuracy, latency
 
 ---
 
