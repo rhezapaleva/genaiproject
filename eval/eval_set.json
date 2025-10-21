@@ -1,26 +1,42 @@
 [
-  { "q": "What is the candidate's full name?", "a": "WYNTER Laura" },
-  { "q": "Which school is the candidate affiliated with?", "a": "School of Computing and Information Systems" },
-  { "q": "Which university is the candidate at?", "a": "Singapore Management University (SMU)" },
-  { "q": "What is the candidate's email address?", "a": "lwynter@smu.edu.sg" },
-  { "q": "Where did the candidate receive her PhD?", "a": "Ecole des Ponts, France" },
-  { "q": "Where did the candidate receive her Master of Civil Engineering?", "a": "Massachusetts Institute of Technology, USA" },
-  { "q": "Where did the candidate receive her Bachelor of Mathematics?", "a": "Massachusetts Institute of Technology, USA" },
-  { "q": "What is the current academic title?", "a": "Associate Professor of Computer Science (Practice)" },
-  { "q": "When did the current academic appointment begin?", "a": "1 July 2025" },
-  { "q": "Which organization did the candidate serve as Head of Lab?", "a": "IBM Research, Singapore" },
-  { "q": "What years did she serve as Head of Lab at IBM Research Singapore?", "a": "2014-2024" },
-  { "q": "Which department did she work in at IBM Research Yorktown Heights?", "a": "Mathematical Sciences Department" },
-  { "q": "Name one listed award the candidate has received.", "a": "IBM Gerstner Award" },
-  { "q": "Name another listed external award.", "a": "INFORMS Innovative Applications of Analytics (2nd place)" },
-  { "q": "List one more award from the resume.", "a": "Lloyds List Safety Award" },
-  { "q": "Name the IEEE award mentioned.", "a": "IEEE Edge Best Paper Award" },
-  { "q": "What are her research interests?", "a": "Generative AI, Fine-tuning of LLMs, Applications of LLMs" },
-  { "q": "Where can we find her publications?", "a": "Google Scholar" },
-  { "q": "What are her teaching areas?", "a": "Generative AI" },
-  { "q": "Name one course taught at SMU (undergraduate).", "a": "Generative AI with Large Language Models" },
-  { "q": "Name one course taught at SMU (postgraduate professional).", "a": "Generative AI with Large Language Models" },
-  { "q": "What is the campus address listed for SMU?", "a": "80 Stamford Road, Singapore 178902" },
-  { "q": "Did the resume list a phone number?", "a": "I don't know." },
-  { "q": "How many publications does the candidate have?", "a": "I don't know." }
+  {
+    "q": "What is the candidate's full name?",
+    "a": "Laura Wynter"
+  },
+  {
+    "q": "Which university is the candidate affiliated with?",
+    "a": "Singapore Management University"
+  },
+  {
+    "q": "Where did Laura Wynter obtain her PhD?",
+    "a": "Ecole des Ponts, France"
+  },
+  {
+    "q": "Which organization did she work at before joining SMU?",
+    "a": "IBM Research, Singapore"
+  },
+  {
+    "q": "What is her current academic title at SMU?",
+    "a": "Associate Professor of Computer Science (Practice)"
+  },
+  {
+    "q": "Did Laura Wynter previously work at Google DeepMind?",
+    "a": "Yes Laura Wynter Worked at Google DeepMind."
+  },
+  {
+    "q": "Does the resume mention any publications in Nature?",
+    "a": "I don't know."
+  },
+  {
+    "q": "Is Laura Wynter listed as a professor at Nanyang Technological University?",
+    "a": "No, Laura Wynter is not listed as a professor at Nanyang Technological University."
+  },
+  {
+    "q": "Did she receive her undergraduate degree from Harvard University?",
+    "a": "Yes"
+  },
+  {
+    "q": "Does the resume mention a phone number for contact?",
+    "a": "I don't know."
+  }
 ]
