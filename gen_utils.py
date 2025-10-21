@@ -21,15 +21,6 @@ def build_prompt(question: str, contexts: List[str]) -> str:
         f"Context:\n{ctx}\n\nQuestion: {question}\nAnswer:"
     )
 
-def build_summary_prompt(contexts: List[str]) -> str:
-    ctx = "\n\n---\n".join(contexts)
-    return (
-        "You are a resume summarizer. Using ONLY the context, write ONE cohesive paragraph "
-        "(90–120 words) that covers roles, organizations, skills, and quantified impact. "
-        "Rules: do not repeat phrases, do not include contact details or links, avoid bullet formatting, "
-        "and vary sentence openings.\n\n"
-        f"Context:\n{ctx}\n\nSummary:"
-    )
 
 
 # ---------- Backends ----------

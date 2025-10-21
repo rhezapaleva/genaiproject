@@ -47,14 +47,39 @@ def is_summary_query(q: str, embedder, threshold: float = 0.35) -> bool:
     sims = (q_emb @ p_embs.T).ravel()
     return sims.max() >= threshold
 
-def build_summary_prompt(contexts: list[str]) -> str:
+def build_summary_prompt(question: str, contexts: list[str]) -> str:
+    """
+    Unified, intent-aware prompt:
+    - If the question is yes/no, answer with 'Yes' or 'No' + ≤12 words copied from snippets.
+    - If the user asks for a summary/overview/profile, write a 90–120 word cohesive paragraph.
+    - Otherwise, answer concisely (one sentence) from snippets.
+    - If not present in snippets, reply exactly: I don't know.
+    """
     ctx = "\n\n---\n".join(contexts)
+    ql = question.lower()
+
+    is_yesno = ql.startswith(("did ", "is ", "are ", "was ", "were ", "has ", "have ", "can ", "could ", "do ", "does ", "did "))
+    is_summary = ("summ" in ql) or any(t in ql for t in ["overview", "profile", "highlights", "recap", "bio", "about you", "about me"])
+
+    rules_yesno = (
+        "Answer ONLY from the snippets. If not stated, reply exactly: I don't know.\n"
+        "If the question is yes/no, reply 'Yes' or 'No' plus at most 12 words copied from the snippets."
+    )
+    rules_summary = (
+        "You are a resume summarizer. Using ONLY the snippets, write ONE cohesive paragraph (90–120 words) "
+        "covering roles, organizations, skills, and quantified impact. Avoid repetition and bullet formatting. "
+        "If key info is missing, omit it rather than guessing."
+    )
+    rules_qa = (
+        "Answer ONLY from the snippets. If the answer is not present, reply exactly: I don't know. "
+        "Keep the answer to one concise sentence, copying or lightly paraphrasing from the snippets."
+    )
+
+    instruction = rules_yesno if is_yesno else (rules_summary if is_summary else rules_qa)
+
     return (
-        "You are a resume summarizer. Using ONLY the context, write ONE cohesive paragraph "
-        "(90–120 words) that covers roles, organizations, skills, and quantified impact. "
-        "Rules: do not repeat phrases, do not include contact details, avoid bullet formatting, "
-        "and vary sentence openings.\n\n"
-        f"Context:\n{ctx}\n\nSummary:"
+        instruction + "\n\n"
+        f"Snippets:\n{ctx}\n\nQuestion: {question}\nAnswer:"
     )
 st.set_page_config(page_title="Resume-QA", page_icon="💬", layout="wide")
 st.title("💬 Resume-QA Chatbot (RAG)")
@@ -119,7 +144,7 @@ if q:
                 ctx = retrieve(q, embedder, st.session_state.idx, st.session_state.chunks, k=8)
             # NEW: dedupe before prompting
             ctx_texts = dedupe_chunks([c for _, c in ctx], max_keep=8)
-            ans = generate_answer(generator, build_summary_prompt(ctx_texts), max_new_tokens=220)
+            ans = generate_answer(generator, build_summary_prompt(q, ctx_texts), max_new_tokens=220)
         else:
             if max_score < thr:
                 ans = "I don't know. Try rephrasing or ask about another section."
